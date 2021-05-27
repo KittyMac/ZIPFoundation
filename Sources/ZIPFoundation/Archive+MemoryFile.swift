@@ -143,7 +143,7 @@ private func closeStub(_ cookie: UnsafeMutableRawPointer?) -> Int32 {
     return 0
 }
 
-#if __LP64__
+#if (arch(x86_64) || arch(arm64))
 private func readStub(_ cookie: UnsafeMutableRawPointer?,
                       _ bytePtr: UnsafeMutablePointer<Int8>?,
                       _ count: Int) -> Int {
