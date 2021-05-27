@@ -143,7 +143,6 @@ private func closeStub(_ cookie: UnsafeMutableRawPointer?) -> Int32 {
     return 0
 }
 
-#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
 private func readStub(_ cookie: UnsafeMutableRawPointer?,
                       _ bytePtr: UnsafeMutablePointer<Int8>?,
                       _ count: Int32) -> Int32 {
@@ -167,7 +166,6 @@ private func seekStub(_ cookie: UnsafeMutableRawPointer?,
     return fpos_t(fileFromCookie(cookie: cookie).seek(offset: Int(offset), whence: whence))
 }
 
-#else
 private func readStub(_ cookie: UnsafeMutableRawPointer?,
                       _ bytePtr: UnsafeMutablePointer<Int8>?,
                       _ count: Int) -> Int {
@@ -196,5 +194,5 @@ private func seekStub(_ cookie: UnsafeMutableRawPointer?,
         return -1
     }
 }
-#endif
+
 #endif
